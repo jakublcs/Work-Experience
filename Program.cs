@@ -1,20 +1,55 @@
 ﻿using System.Text.Json;
 using System.IO;
+using System.Runtime.CompilerServices;
+using System.Xml.Linq;
 
 namespace Greeting
 {
 
     public class Person
     {
-        public string Name { get; set; }
-        public int Age { get; set; }
+        private string name;
+        private int age;
+        public string Name
+        {
+            get { return name; }
+            set     
+            {
+                try
+                {
+                    Convert.ToInt32(name);
+                    throw new FormatException();
+                }
+                catch (FormatException)
+                {
+                    throw new FormatException();
+                }
+                catch (Exception e)
+                {
+                    name = value;
+                }
+            }
+        }
+        public int Age
+        {
+            get { return age; }
+            set
+            {
+                if (age > 0)
+                {
+                    age = value;
+                }
+                else
+                {
+                    throw new IndexOutOfRangeException();
+                }
+            }       
+        }
 
     }
     
     class Program
     {
-
-
 
         static string GetName()
         {
@@ -128,15 +163,16 @@ namespace Greeting
                 Name = GetName(),
                 Age = GetAge(),
             };
-
-            ShowResult(human.Name, human.Age);
+        ShowResult(human.Name, human.Age);
 
             string humanJson = JsonSerializer.Serialize(human);
             StreamWriter writer = new StreamWriter("C:\\Users\\Localadmin\\source\\repos\\Work Experience\\people.txt");
-            writer.WriteLine(humanJson);
+            writer.WriteLine(humanJson);    
             writer.Close();
         }
 
     }
 
+
+    
 }
