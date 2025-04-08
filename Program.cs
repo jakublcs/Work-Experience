@@ -1,13 +1,13 @@
-﻿using System.Globalization;
-using System.Reflection.Metadata.Ecma335;
+﻿using System.Text.Json;
+using System.IO;
 
 namespace Greeting
 {
 
     public class Person
     {
-        public string name;
-        public int age;
+        public string Name { get; set; }
+        public int Age { get; set; }
 
     }
     
@@ -25,7 +25,7 @@ namespace Greeting
 
                 string firstName = Console.ReadLine();  //Reads first name
 
-                Console.WriteLine("What is your last name? ");   //Asks for last name
+                Console.WriteLine("\nWhat is your last name? ");   //Asks for last name
 
                 string lastName = Console.ReadLine(); //Reads last name
 
@@ -89,7 +89,7 @@ namespace Greeting
             while (invalidAge)
             {
                 string age;
-                Console.WriteLine("How old are you? ");
+                Console.WriteLine("\nHow old are you? ");
                 age = Console.ReadLine();
                 char[] numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
                 for (int i = 0; i < numbers.Length; i++)
@@ -118,16 +118,23 @@ namespace Greeting
 
         static void ShowResult(string name, int age)
         {
-            Console.WriteLine($"Hello {name}, you are {age} years old!");
+            Console.WriteLine($"\nHello {name}, you are {age} years old!");
         }
 
         static void Main(string[] args)
         {
-            var human = new Person();
-            human.name = GetName();
-            human.age = GetAge();
+            Person human = new Person
+            {
+                Name = GetName(),
+                Age = GetAge(),
+            };
 
-            ShowResult(human.name, human.age);
+            ShowResult(human.Name, human.Age);
+
+            string humanJson = JsonSerializer.Serialize(human);
+            StreamWriter writer = new StreamWriter("C:\\Users\\Localadmin\\source\\repos\\Work Experience\\people.txt");
+            writer.WriteLine(humanJson);
+            writer.Close();
         }
 
     }
