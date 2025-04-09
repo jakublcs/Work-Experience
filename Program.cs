@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 using System.IO.Compression;
+using System.Text.Json.Serialization;
 
 
 namespace Greeting
@@ -329,25 +330,18 @@ namespace Greeting
                     };
 
                     ShowResult(human.Name, human.Age);
+                    var options = new JsonSerializerOptions();
+                    options.WriteIndented = true;
 
                     string humanJson = JsonSerializer.Serialize(human);
-                    File.AppendAllText("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\people.txt", humanJson);
+                    File.AppendAllText("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\people.json", "[" + humanJson + "]");
                     cont = ContinueOrNot();
                 }
                 else if (add == "access")
                 {
                     humanList.Clear();
-                    StreamReader reader = new StreamReader("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\people.txt");
-                    string data = reader.ReadLine();
-                    while (data != null)
-                    {
-                        humanList.Add(data);
-                        data = reader.ReadLine();
-                    }
-                    humanList = JsonSerializer.Deserialize(data);
-                    Console.Write(humanList);
-                    reader.Close();
-                    Console.Write("\n");
+                    var personJson = File.ReadAllText("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\people.json");
+                    Person dePerson = JsonSerializer.Deserialize<Person>(personJson);
                     cont = ContinueOrNot();
                 }
             }
