@@ -13,7 +13,6 @@ namespace Greeting
     {
         private string name;
         private int age;
-        private List<String> pets = new List<string>();
         public string Name
         {
             get { return name; }
@@ -49,28 +48,6 @@ namespace Greeting
                 }
             }
         }
-        public string Pets
-        {
-            get { return Convert.ToString(pets); }
-            set
-            {
-                try
-                {
-                    Convert.ToInt32(value);
-                    throw new EntryPointNotFoundException();
-                }
-                catch (EntryPointNotFoundException)
-                {
-
-                    Environment.Exit(1);
-                }
-                catch (Exception e)
-                {
-                    pets.Add(value);
-                }
-            }
-        }
-
     }
 
     public class Pet
@@ -359,10 +336,10 @@ namespace Greeting
                     ShowResult(human.Name, human.Age);
 
                     string humanJson = JsonSerializer.Serialize(human);
-                    File.AppendAllText("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\people.txt", humanJson + "\n");
+                    File.AppendAllText("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\people.txt", humanJson + "\nPets: ");
                     for (int i = 0; i < pets.Count(); i++)
-                    {  
-                        string datatemp = pets[i]
+                    {
+                        string datatemp = pets[i];
                         File.AppendAllText("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\people.txt", datatemp);
                     }
                     File.AppendAllText("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\people.txt", "\n");
@@ -370,6 +347,7 @@ namespace Greeting
                 }
                 else if (add == "access")
                 {
+                    humanList.RemoveRange(0, humanList.Count());
                     StreamReader reader = new StreamReader("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\people.txt");
                     string data = reader.ReadLine();
                     while (data != null)
