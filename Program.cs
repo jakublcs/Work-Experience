@@ -13,19 +13,20 @@ namespace Greeting
     {
         private string name;
         private int age;
+        private List<String> pets = new List<string>();
         public string Name
         {
             get { return name; }
-            set     
+            set
             {
                 try
                 {
-                    Convert.ToInt32(name);
+                    Convert.ToInt32(value);
                     throw new EntryPointNotFoundException();
                 }
                 catch (EntryPointNotFoundException)
                 {
-                    name = value;
+                    Environment.Exit(1);
                 }
                 catch (Exception e)
                 {
@@ -38,7 +39,7 @@ namespace Greeting
             get { return age; }
             set
             {
-                if (age >= 0)
+                if (value >= 0)
                 {
                     age = value;
                 }
@@ -46,11 +47,95 @@ namespace Greeting
                 {
                     throw new IndexOutOfRangeException();
                 }
-            }       
+            }
+        }
+        public string Pets
+        {
+            get { return Convert.ToString(pets); }
+            set
+            {
+                try
+                {
+                    Convert.ToInt32(value);
+                    throw new EntryPointNotFoundException();
+                }
+                catch (EntryPointNotFoundException)
+                {
+
+                    Environment.Exit(1);
+                }
+                catch (Exception e)
+                {
+                    pets.Add(value);
+                }
+            }
         }
 
     }
-    
+
+    public class Pet
+    {
+        private string name;
+        private string species;
+        private long id;
+        public string Name
+        {
+            get { return name; }
+            set
+            {
+                try
+                {
+                    Convert.ToInt32(value);
+                    throw new EntryPointNotFoundException();
+                }
+                catch (EntryPointNotFoundException)
+                {
+                    Environment.Exit(1);
+                }
+                catch (Exception e)
+                {
+                    name = value;
+                }
+            }
+        }
+        public string Species
+        {
+            get { return species; }
+            set
+            {
+                try
+                {
+                    Convert.ToInt32(value);
+                    throw new EntryPointNotFoundException();
+                }
+                catch (EntryPointNotFoundException)
+                {
+                    Environment.Exit(1);
+                }
+                catch (Exception e)
+                {
+                    species = value;
+                }
+            }
+        }
+        public long Id
+        {
+            get { return id; }
+            set
+            {
+                if (value >= 0)
+                {
+                    id = value;
+                }
+                else
+                {
+                    throw new IndexOutOfRangeException();
+                }
+            }
+        }
+
+    }
+
     class Program
     {
         static string AddOrAccess()
@@ -78,7 +163,7 @@ namespace Greeting
             }
             return null;
         }
-        
+
         static string ContinueOrNot()
         {
             bool unknown = true;
@@ -89,7 +174,7 @@ namespace Greeting
                 Console.Write("\n");
                 if (decision.ToLower() == "yes")
                 {
-                    unknown = false;    
+                    unknown = false;
                     return "yes";
                 }
                 else if (decision.ToLower() == "no")
@@ -169,7 +254,7 @@ namespace Greeting
                     }
                 }
             }
-        return "false";
+            return "false";
         }
 
         static int GetAge()
@@ -198,12 +283,55 @@ namespace Greeting
                             continue;
                         }
                         else;
-                            continue;
+                        continue;
                     }
                 }
             }
             return -1;
-        }   
+        }
+
+        static List<String> GetPets()
+        {
+            bool unknownNumber = true;
+            int numOfPets = 0;
+            while (unknownNumber)
+            {
+                Console.WriteLine("\nHow many pets do you have? ");
+                numOfPets = Convert.ToInt32(Console.ReadLine());
+                if (numOfPets == 0)
+                {
+                    unknownNumber = false;
+                    return null;
+                }
+                else if (numOfPets > 0)
+                {
+                    unknownNumber = false;
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            List<String> pets = new List<string>();
+            for (int i = 0; i < numOfPets; i++)
+            {
+                Console.WriteLine("\nWhat is your pet's name? ");
+                string petName = Console.ReadLine();
+                Console.WriteLine("\nWhat is your pet's ID? ");
+                int petID = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("\nWhat species is your pet? ");
+                string petSpecies = Console.ReadLine().ToUpper();
+                Pet pet = new Pet
+                {
+                    Name = petName,
+                    Species = petSpecies,
+                    Id = petID,
+                };
+                string petJson = JsonSerializer.Serialize(pet);
+                pets.Add(petJson);
+            }
+            return pets;
+        }
 
         static void ShowResult(string name, int age)
         {
@@ -217,40 +345,48 @@ namespace Greeting
             while (cont == "yes")
             {
                 string add = AddOrAccess();
-                    if (add == "add")
+                if (add == "add")
+                {
+                    Person human = new Person
                     {
-                        Person human = new Person
-                        {
-                            Name = GetName(),
-                            Age = GetAge(),
-                        };
-                        ShowResult(human.Name, human.Age);
+                        Name = GetName(),
+                        Age = GetAge(),
+                    };
 
-                        string humanJson = JsonSerializer.Serialize(human);
-                        File.AppendAllText("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\people.txt", humanJson + "\n");
-                        cont = ContinueOrNot();
+                    List<String> pets = new List<string>();
+                    pets = GetPets();
+
+                    ShowResult(human.Name, human.Age);
+
+                    string humanJson = JsonSerializer.Serialize(human);
+                    File.AppendAllText("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\people.txt", humanJson + "\n");
+                    for (int i = 0; i < pets.Count(); i++)
+                    {  
+                        string datatemp = pets[i]
+                        File.AppendAllText("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\people.txt", datatemp);
                     }
-                    else if (add == "access")
+                    File.AppendAllText("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\people.txt", "\n");
+                    cont = ContinueOrNot();
+                }
+                else if (add == "access")
+                {
+                    StreamReader reader = new StreamReader("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\people.txt");
+                    string data = reader.ReadLine();
+                    while (data != null)
                     {
-                        StreamReader reader = new StreamReader("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\people.txt");
-                        string data = reader.ReadLine();
-                        while (data != null)
-                        {
-                            humanList.Add(data);
-                            data = reader.ReadLine();
-                        }
-                        for (int i = 0; i < humanList.Count; i++)
-                        {
-                            Console.WriteLine(humanList[i]);
-                        }
-                        reader.Close();
-                        cont = ContinueOrNot();
+                        humanList.Add(data);
+                        data = reader.ReadLine();
                     }
+                    for (int i = 0; i < humanList.Count; i++)
+                    {
+                        Console.WriteLine(humanList[i]);
+                    }
+                    reader.Close();
+                    Console.Write("\n");
+                    cont = ContinueOrNot();
+                }
             }
         }
 
     }
-
-
-    
 }

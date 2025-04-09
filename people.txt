@@ -1,2 +1,0 @@
-{"Name":"Jakub Lichota","Age":15}
-{"Name":"Kuba Lichota","Age":15}
