@@ -1,136 +1,104 @@
 ﻿using System.Text.Json;
-using System.IO;
-using System.Runtime.CompilerServices;
-using System.Xml.Linq;
-using System.ComponentModel.Design;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
-namespace Greeting
+namespace Work_Experience
 {
-
     public class Person
     {
-        private string name;
-        private int age;
         public string Name
         {
-            get { return name; }
+            get;
             set
             {
                 try
                 {
-                    Convert.ToInt32(value);
+                    _ = Convert.ToInt32(value);
                     throw new EntryPointNotFoundException();
                 }
                 catch (EntryPointNotFoundException)
                 {
                     Environment.Exit(1);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-                    name = value;
+                    field = value;
                 }
             }
         }
         public int Age
         {
-            get { return age; }
-            set
-            {
-                if (value >= 0)
-                {
-                    age = value;
-                }
-                else
-                {
-                    throw new IndexOutOfRangeException();
-                }
-            }
+            get;
+            set => field = value >= 0 ? value : throw new IndexOutOfRangeException();
         }
+        //public required List<Pet> Pets { get; set; }
     }
 
     public class Pet
     {
-        private string name;
-        private string species;
-        private long id;
         public string Name
         {
-            get { return name; }
+            get;
             set
             {
                 try
                 {
-                    Convert.ToInt32(value);
+                    _ = Convert.ToInt32(value);
                     throw new EntryPointNotFoundException();
                 }
                 catch (EntryPointNotFoundException)
                 {
                     Environment.Exit(1);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-                    name = value;
+                    field = value;
                 }
             }
         }
         public string Species
         {
-            get { return species; }
+            get;
             set
             {
                 try
                 {
-                    Convert.ToInt32(value);
+                    _ = Convert.ToInt32(value);
                     throw new EntryPointNotFoundException();
                 }
                 catch (EntryPointNotFoundException)
                 {
                     Environment.Exit(1);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-                    species = value;
+                    field = value;
                 }
             }
         }
         public long Id
         {
-            get { return id; }
-            set
-            {
-                if (value >= 0)
-                {
-                    id = value;
-                }
-                else
-                {
-                    throw new IndexOutOfRangeException();
-                }
-            }
+            get;
+            set => field = value >= 0 ? value : throw new IndexOutOfRangeException();
         }
-
     }
 
     class Program
     {
-        static string AddOrAccess()
+        static string? AddOrAccess()
         {
             bool unknown = true;
             while (unknown)
             {
-                Console.WriteLine("Would you like to add a person or access the list? (type add or access)");
+                Console.WriteLine(
+                    "Would you like to add a person or access the list? (type add or access)"
+                );
                 string decision = Console.ReadLine();
                 Console.Write("\n");
                 if (decision.ToLower() == "add")
                 {
-                    unknown = false;
                     return "add";
                 }
                 else if (decision.ToLower() == "access")
                 {
-                    unknown = false;
                     return "access";
                 }
                 else
@@ -141,7 +109,7 @@ namespace Greeting
             return null;
         }
 
-        static string ContinueOrNot()
+        static string? ContinueOrNot()
         {
             bool unknown = true;
             while (unknown)
@@ -151,12 +119,10 @@ namespace Greeting
                 Console.Write("\n");
                 if (decision.ToLower() == "yes")
                 {
-                    unknown = false;
                     return "yes";
                 }
                 else if (decision.ToLower() == "no")
                 {
-                    unknown = false;
                     return "no";
                 }
                 else
@@ -172,11 +138,11 @@ namespace Greeting
             bool validName = false;
             while (validName != true)
             {
-                Console.WriteLine("What is your first name? ");  //Asks for first name
+                Console.WriteLine("What is your first name? "); //Asks for first name
 
-                string firstName = Console.ReadLine();  //Reads first name
+                string firstName = Console.ReadLine(); //Reads first name
 
-                Console.WriteLine("\nWhat is your last name? ");   //Asks for last name
+                Console.WriteLine("\nWhat is your last name? "); //Asks for last name
 
                 string lastName = Console.ReadLine(); //Reads last name
 
@@ -184,14 +150,15 @@ namespace Greeting
 
                 int invalidCharacters = 0;
                 int validCharactersTotal = 0;
-                string validCharactersString = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz ";
-                char[] validCharacters = validCharactersString.ToCharArray();    //Suitable characters for a name
+                string validCharactersString =
+                    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz ";
+                char[] validCharacters = validCharactersString.ToCharArray(); //Suitable characters for a name
 
-                while (validCharactersTotal != fullName.Length && invalidCharacters == 0)           //Iterates through the name and checks all characters are valid
+                while (validCharactersTotal != fullName.Length && invalidCharacters == 0) //Iterates through the name and checks all characters are valid
                 {
                     for (int i = 0; i < fullName.Length; i += 1)
                     {
-                        char letter1temp = fullName[i];
+                        _ = fullName[i];
 
                         for (int z = 0; z < validCharacters.Length; z += 1)
                         {
@@ -247,7 +214,6 @@ namespace Greeting
                 {
                     if (age[0] == numbers[i])
                     {
-                        invalidAge = false;
                         int ageInt = Convert.ToInt32(age);
                         return ageInt;
                     }
@@ -259,7 +225,8 @@ namespace Greeting
                             Console.Write("\n");
                             continue;
                         }
-                        else;
+                        else
+                            ;
                         continue;
                     }
                 }
@@ -267,7 +234,7 @@ namespace Greeting
             return -1;
         }
 
-        static List<String> GetPets()
+        static List<string>? GetPets()
         {
             bool unknownNumber = true;
             int numOfPets = 0;
@@ -277,7 +244,6 @@ namespace Greeting
                 numOfPets = Convert.ToInt32(Console.ReadLine());
                 if (numOfPets == 0)
                 {
-                    unknownNumber = false;
                     return null;
                 }
                 else if (numOfPets > 0)
@@ -289,7 +255,7 @@ namespace Greeting
                     continue;
                 }
             }
-            List<String> pets = new List<string>();
+            List<string> pets = [];
             for (int i = 0; i < numOfPets; i++)
             {
                 Console.WriteLine("\nWhat is your pet's name? ");
@@ -298,12 +264,13 @@ namespace Greeting
                 int petID = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("\nWhat species is your pet? ");
                 string petSpecies = Console.ReadLine().ToUpper();
-                Pet pet = new Pet
-                {
-                    Name = petName,
-                    Species = petSpecies,
-                    Id = petID,
-                };
+                Pet pet =
+                    new()
+                    {
+                        Name = petName,
+                        Species = petSpecies,
+                        Id = petID,
+                    };
                 string petJson = JsonSerializer.Serialize(pet);
                 pets.Add(petJson);
             }
@@ -318,37 +285,60 @@ namespace Greeting
         static void Main(string[] args)
         {
             string cont = "yes";
-            List<String> humanList = new List<string>();
+            List<string> humanList = [];
             while (cont == "yes")
             {
                 string add = AddOrAccess();
                 if (add == "add")
                 {
-                    Person human = new Person
-                    {
-                        Name = GetName(),
-                        Age = GetAge(),
-                    };
-
-                    List<String> pets = new List<string>();
-                    pets = GetPets();
+                    Person human = new() { Name = GetName(), Age = GetAge(), };
+                    List<string> pets = GetPets();
 
                     ShowResult(human.Name, human.Age);
 
                     string humanJson = JsonSerializer.Serialize(human);
-                    File.AppendAllText("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\people.txt", humanJson + "\nPets: ");
+                    // save it as a json array so that you can just deseriaze to a list
+                    // so you will need to deserialise the whole list first, then add to it, then serialise again
+                    // You also don't need to do Pets:..., as Pets can just be a property in the Person json.
+                    // This will happen automatically when you make Pets a property in the Person Class
+                    File.AppendAllText(
+                        "C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\people.txt",
+                        humanJson + "\nPets: "
+                    );
                     for (int i = 0; i < pets.Count(); i++)
                     {
                         string datatemp = pets[i];
-                        File.AppendAllText("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\people.txt", datatemp);
+                        File.AppendAllText(
+                            "C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\people.txt",
+                            datatemp
+                        );
                     }
-                    File.AppendAllText("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\people.txt", "\n");
+                    File.AppendAllText(
+                        "C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\people.txt",
+                        "\n"
+                    );
                     cont = ContinueOrNot();
                 }
                 else if (add == "access")
                 {
+                    /* you are just outputting the contents of the text file.
+                     try outputting in a nicer, more friendlier format. eg:
+                    
+                    Bob Smith, 20
+                    Pets:
+                      - Gizmo, Dog
+                      - Fred, Fish
+
+                    Sara Wilson, 55
+                    Pets: None
+                    
+                    
+                    to do this, you'll need to deserialize.
+                    */
+                    // humanlist.clear
                     humanList.RemoveRange(0, humanList.Count());
-                    StreamReader reader = new StreamReader("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\people.txt");
+                    StreamReader reader =
+                        new("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\people.txt");
                     string data = reader.ReadLine();
                     while (data != null)
                     {
@@ -365,6 +355,5 @@ namespace Greeting
                 }
             }
         }
-
     }
 }
