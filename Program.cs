@@ -2,6 +2,9 @@
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Xml.Linq;
+using System.ComponentModel.Design;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Greeting
 {
@@ -18,11 +21,11 @@ namespace Greeting
                 try
                 {
                     Convert.ToInt32(name);
-                    throw new FormatException();
+                    throw new EntryPointNotFoundException();
                 }
-                catch (FormatException)
+                catch (EntryPointNotFoundException)
                 {
-                    throw new FormatException();
+                    name = value;
                 }
                 catch (Exception e)
                 {
@@ -35,7 +38,7 @@ namespace Greeting
             get { return age; }
             set
             {
-                if (age > 0)
+                if (age >= 0)
                 {
                     age = value;
                 }
@@ -50,6 +53,57 @@ namespace Greeting
     
     class Program
     {
+        static string AddOrAccess()
+        {
+            bool unknown = true;
+            while (unknown)
+            {
+                Console.WriteLine("Would you like to add a person or access the list? (type add or access)");
+                string decision = Console.ReadLine();
+                Console.Write("\n");
+                if (decision.ToLower() == "add")
+                {
+                    unknown = false;
+                    return "add";
+                }
+                else if (decision.ToLower() == "access")
+                {
+                    unknown = false;
+                    return "access";
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            return null;
+        }
+        
+        static string ContinueOrNot()
+        {
+            bool unknown = true;
+            while (unknown)
+            {
+                Console.WriteLine("Would you like to continue the program? (type yes or no)");
+                string decision = Console.ReadLine();
+                Console.Write("\n");
+                if (decision.ToLower() == "yes")
+                {
+                    unknown = false;    
+                    return "yes";
+                }
+                else if (decision.ToLower() == "no")
+                {
+                    unknown = false;
+                    return "no";
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            return null;
+        }
 
         static string GetName()
         {
@@ -153,22 +207,46 @@ namespace Greeting
 
         static void ShowResult(string name, int age)
         {
-            Console.WriteLine($"\nHello {name}, you are {age} years old!");
+            Console.WriteLine($"\nHello {name}, you are {age} years old!\n");
         }
 
         static void Main(string[] args)
         {
-            Person human = new Person
+            string cont = "yes";
+            List<String> humanList = new List<string>();
+            while (cont == "yes")
             {
-                Name = GetName(),
-                Age = GetAge(),
-            };
-        ShowResult(human.Name, human.Age);
+                string add = AddOrAccess();
+                    if (add == "add")
+                    {
+                        Person human = new Person
+                        {
+                            Name = GetName(),
+                            Age = GetAge(),
+                        };
+                        ShowResult(human.Name, human.Age);
 
-            string humanJson = JsonSerializer.Serialize(human);
-            StreamWriter writer = new StreamWriter("C:\\Users\\Localadmin\\source\\repos\\Work Experience\\people.txt");
-            writer.WriteLine(humanJson);    
-            writer.Close();
+                        string humanJson = JsonSerializer.Serialize(human);
+                        File.AppendAllText("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\people.txt", humanJson + "\n");
+                        cont = ContinueOrNot();
+                    }
+                    else if (add == "access")
+                    {
+                        StreamReader reader = new StreamReader("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\people.txt");
+                        string data = reader.ReadLine();
+                        while (data != null)
+                        {
+                            humanList.Add(data);
+                            data = reader.ReadLine();
+                        }
+                        for (int i = 0; i < humanList.Count; i++)
+                        {
+                            Console.WriteLine(humanList[i]);
+                        }
+                        reader.Close();
+                        cont = ContinueOrNot();
+                    }
+            }
         }
 
     }
