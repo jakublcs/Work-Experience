@@ -1,0 +1,1 @@
+{"Name":"Jakub Lichota","Age":15,"Pets":["{\u0022Name\u0022:\u0022Snow\u0022,\u0022Species\u0022:\u0022DOG\u0022,\u0022Id\u0022:1234}"]}
