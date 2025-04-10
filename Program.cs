@@ -333,15 +333,36 @@ namespace Greeting
                     var options = new JsonSerializerOptions();
                     options.WriteIndented = true;
 
-                    string humanJson = JsonSerializer.Serialize(human);
-                    File.AppendAllText("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\people.json", "[" + humanJson + "]");
+                    string humanJson = JsonSerializer.Serialize<Person>(human);
+                    string tempdata = File.ReadAllText("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\people.json");
+                    if (tempdata == null)
+                    {
+                        File.AppendAllText("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\people.json", "[" + humanJson + "]");
+                    }
+                    else
+                    {
+                        string newdata = tempdata.Remove(tempdata.Length-1, 1);
+                        newdata = newdata + "," + humanJson + "]";
+                        File.WriteAllText("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\people.json", newdata);
+                    }
                     cont = ContinueOrNot();
                 }
                 else if (add == "access")
                 {
-                    humanList.Clear();
                     var personJson = File.ReadAllText("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\people.json");
-                    Person dePerson = JsonSerializer.Deserialize<Person>(personJson);
+                    List<Person> persons = JsonSerializer.Deserialize<List<Person>>(personJson); 
+                    
+                    for (int i = 0; i < persons.Count(); i++)
+                    {
+                        var dePerson = persons[i];
+                        Console.Write($"Name: {dePerson.Name}\nAge: {dePerson.Age}\nPets:");
+                        for (int y = 0; y < dePerson.Pets.Count(); y++)
+                        {
+                            var pet = JsonSerializer.Deserialize<Pet>(dePerson.Pets[y]);
+                            Console.Write($"\n\tName: {pet.Name}\n\tSpecies: {pet.Species}\n\tID: {pet.Id}\n");
+                        }
+                        Console.Write("\n");
+                    }
                     cont = ContinueOrNot();
                 }
             }
