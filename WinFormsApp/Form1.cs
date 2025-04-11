@@ -330,14 +330,18 @@ namespace FormsProj
                 pet1.Add(pet2);
 
             }
-                text = $"Name: {persons[index].Name}\nAge: {persons[index].Age}\nPets:\n";
-                for (int i = 0; i < pet1.Count; i++)
-                {
-                    text = text + "\tName: " + pet1[i].Name + "\n\t Species: " + pet1[i].Species + "\n\t ID: " + pet1[i].Id + "\n\n";
-                }
-                richTextBox1.Text = text;
-                text = "";
-                pet1 = [];
+            text = $"Name: {persons[index].Name}\nAge: {persons[index].Age}\nPets:\n";
+            for (int i = 0; i < pet1.Count; i++)
+            {
+                text = text + "\tName: " + pet1[i].Name + "\n\t Species: " + pet1[i].Species + "\n\t ID: " + pet1[i].Id + "\n\n";
+            }
+            if (pet1.Count == 0)
+            {
+                text = text + "\tNone";
+            }
+            richTextBox1.Text = text;
+            text = "";
+            pet1 = [];
         }
         private void accessToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -376,6 +380,10 @@ namespace FormsProj
             var personJson = File.ReadAllText("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\WinFormsApp\\people.json");
             List<Person> persons = JsonSerializer.Deserialize<List<Person>>(personJson);
             index+=1;
+            if (index >= persons.Count())
+            {
+                index = 0;
+            }
             string text = "";
             richTextBox1.Show();
             button7.Show();
@@ -392,6 +400,10 @@ namespace FormsProj
             {
                 text = text + "\tName: " + pet1[i].Name + "\n\t Species: " + pet1[i].Species + "\n\t ID: " + pet1[i].Id + "\n\n";
             }
+            if (pet1.Count == 0)
+            {
+                text = text + "\tNone";
+            }
             richTextBox1.Text = text;
             text = "";
             pet1 = [];
@@ -407,6 +419,10 @@ namespace FormsProj
             button8.Show();
             var personJson = File.ReadAllText("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\WinFormsApp\\people.json");
             List<Person> persons = JsonSerializer.Deserialize<List<Person>>(personJson);
+            if (index == -1)
+            {
+                index = (persons.Count() - 1);
+            }
             for (int i = 0; i < persons[index].Pets.Count; i++)
             {
                 var pet2 = JsonSerializer.Deserialize<Pet>(persons[index].Pets[i]);
@@ -417,6 +433,10 @@ namespace FormsProj
             for (int i = 0; i < pet1.Count; i++)
             {
                 text = text + "\tName: " + pet1[i].Name + "\n\t Species: " + pet1[i].Species + "\n\t ID: " + pet1[i].Id + "\n\n";
+            }
+            if (pet1.Count == 0)
+            {
+                text = text + "\tNone";
             }
             richTextBox1.Text = text;
             text = "";

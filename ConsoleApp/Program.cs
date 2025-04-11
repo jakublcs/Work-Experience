@@ -237,6 +237,10 @@ namespace Greeting
                             var pet = JsonSerializer.Deserialize<Pet>(dePerson.Pets[y]);
                             Console.Write($"\n\tName: {pet.Name}\n\tSpecies: {pet.Species}\n\tID: {pet.Id}\n");
                         }
+                        if (dePerson.Pets.Count() == 0)
+                        {
+                            Console.Write("\n\tNone");
+                        }
                         Console.Write("\n");
                     }
                     cont = ContinueOrNot();
