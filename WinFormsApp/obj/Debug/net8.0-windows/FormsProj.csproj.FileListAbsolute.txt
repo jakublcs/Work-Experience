@@ -49,3 +49,7 @@ C:\Users\Localadmin\source\repos\WorkExperience\WinFormsApp\obj\Debug\net8.0-win
 C:\Users\Localadmin\source\repos\WorkExperience\WinFormsApp\obj\Debug\net8.0-windows\FormsProj.pdb
 C:\Users\Localadmin\source\repos\WorkExperience\WinFormsApp\obj\Debug\net8.0-windows\FormsProj.genruntimeconfig.cache
 C:\Users\Localadmin\source\repos\WorkExperience\WinFormsApp\obj\Debug\net8.0-windows\ref\FormsProj.dll
+C:\Users\Localadmin\source\repos\WorkExperience\WinFormsApp\bin\Debug\net8.0-windows\ClassLibrary.dll
+C:\Users\Localadmin\source\repos\WorkExperience\WinFormsApp\bin\Debug\net8.0-windows\ClassLibrary.pdb
+C:\Users\Localadmin\source\repos\WorkExperience\WinFormsApp\obj\Debug\net8.0-windows\FormsProj.csproj.AssemblyReference.cache
+C:\Users\Localadmin\source\repos\WorkExperience\WinFormsApp\obj\Debug\net8.0-windows\FormsProj.csproj.Up2Date

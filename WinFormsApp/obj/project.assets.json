@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net8.0-windows7.0": {}
+    "net8.0-windows7.0": {
+      "ClassLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/ClassLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ClassLibrary.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "ClassLibrary/1.0.0": {
+      "type": "project",
+      "path": "../ClassLibrary/ClassLibrary.csproj",
+      "msbuildProject": "../ClassLibrary/ClassLibrary.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net8.0-windows7.0": []
+    "net8.0-windows7.0": [
+      "ClassLibrary >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Localadmin\\.nuget\\packages\\": {},
@@ -40,7 +59,11 @@
       "frameworks": {
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\ClassLibrary\\ClassLibrary.csproj": {
+              "projectPath": "C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\ClassLibrary\\ClassLibrary.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

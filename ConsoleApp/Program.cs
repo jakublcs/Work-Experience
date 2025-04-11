@@ -8,109 +8,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 using System.IO.Compression;
 using System.Text.Json.Serialization;
+using static ClassLibrary.Class1;
+using static ClassLibrary.Class1.Methods;
+using static ClassLibrary.Class1.Person;
 
 
 namespace Greeting
 {
-
-    public class Person
-    {
-        private string name;
-        private int age;
-        private List<String> pets;
-
-        public Person(string name, int age)
-        {
-            this.name = name;
-            this.age = age;
-        }
-
-        public string Name
-        {
-            get { return name; }
-            set
-            {
-                if (Regex.IsMatch(value, "\"[^a-zA-z]\"g"))
-                {
-                    throw new ArgumentException();
-                }
-
-                name = value;
-            }
-        }
-        public int Age
-        {
-            get { return age; }
-            set
-            {
-                if (value < 0)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-
-                age = value;
-            }
-        }
-        public required List<string> Pets
-        {
-            get { return pets; }
-            set { pets = value; }
-        }
-    }
-
-    public class Pet
-    {
-        public void Person(string name, int id, string species)
-        {
-            this.name = name;
-            this.id = id;
-            this.species = species;
-        }
-
-        private string name;
-        private string species;
-        private int id;
-        public string Name
-        {
-            get { return name; }
-            set
-            {
-                if (Regex.IsMatch(value, "\"[^a-zA-z]\"g"))
-                {
-                    throw new ArgumentException();
-                }
-
-                name = value;
-            }
-        }
-        public string Species
-        {
-            get { return species; }
-            set
-            {
-                if (Regex.IsMatch(value, "\"[^a-zA-z]\"g"))
-                {
-                    throw new ArgumentException();
-                }
-
-                species = value;
-            }
-        }
-        public int Id
-        {
-            get { return id; }
-            set
-            {
-                if (value < 0)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-
-                id = value;
-            }
-        }
-    }
-
     class Program
     {
         static string AddOrAccess()
@@ -168,6 +72,7 @@ namespace Greeting
         static string GetName()
         {
             bool validName = false;
+
             while (validName != true)
             {
                 Console.WriteLine("What is your first name? ");  //Asks for first name
@@ -180,58 +85,20 @@ namespace Greeting
 
                 string fullName = firstName + " " + lastName;
 
-                int invalidCharacters = 0;
-                int validCharactersTotal = 0;
-                string validCharactersString = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz ";
-                char[] validCharacters = validCharactersString.ToCharArray();    //Suitable characters for a name
+                string name = ValidateName(fullName);
 
-                while (validCharactersTotal != fullName.Length && invalidCharacters == 0)           //Iterates through the name and checks all characters are valid
+                if (name != "false")
                 {
-                    for (int i = 0; i < fullName.Length; i += 1)
-                    {
-                        char letter1temp = fullName[i];
-
-                        for (int z = 0; z < validCharacters.Length; z += 1)
-                        {
-                            char letter2temp = validCharacters[z];
-
-                            if (fullName[i] == letter2temp)
-                            {
-                                validCharactersTotal += 1;
-                                continue;
-                            }
-                            else
-                            {
-                                if (z + 1 == validCharacters.Length)
-                                {
-                                    invalidCharacters = 1;
-                                }
-                                else
-                                {
-                                    invalidCharacters = 0;
-                                    continue;
-                                }
-                            }
-                        }
-                    }
-                    if (validCharactersTotal == fullName.Length)
-                    {
-                        invalidCharacters = 0;
-                    }
-                    if (invalidCharacters == 0)
-                    {
-                        return fullName;
-                    }
-                    else
-                    {
-                        Console.Write("\n");
-                        continue;
-                    }
+                    validName = true;
+                    return name;
+                }
+                else
+                {
+                    continue;
                 }
             }
-            return "false";
+            return null;
         }
-
         static int GetAge()
         {
             bool invalidAge = true;
@@ -257,8 +124,11 @@ namespace Greeting
                             Console.Write("\n");
                             continue;
                         }
-                        else;
-                        continue;
+                        else
+                        {
+                            continue;
+
+                        }
                     }
                 }
             }
@@ -302,8 +172,12 @@ namespace Greeting
                     Species = petSpecies,
                     Id = petID,
                 };
-                string petJson = JsonSerializer.Serialize(pet);
+                string petJson = JsonSerializer.Serialize(pet, new JsonSerializerOptions()
+                {
+                    WriteIndented = true
+                });
                 pets.Add(petJson);
+                
             }
             return pets;
         }
@@ -328,28 +202,30 @@ namespace Greeting
                         Age = GetAge(),
                         Pets = GetPets(),
                     };
-
                     ShowResult(human.Name, human.Age);
                     var options = new JsonSerializerOptions();
                     options.WriteIndented = true;
 
-                    string humanJson = JsonSerializer.Serialize<Person>(human);
-                    string tempdata = File.ReadAllText("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\people.json");
+                    string humanJson = JsonSerializer.Serialize<Person>(human, new JsonSerializerOptions()
+                    {
+                        WriteIndented = true
+                    });
+                    var tempdata = File.ReadAllText("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\ConsoleApp\\people.json");
                     if (tempdata == null)
                     {
-                        File.AppendAllText("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\people.json", "[" + humanJson + "]");
+                        File.AppendAllText("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\ConsoleApp\\people.json", "[" + humanJson + "]");
                     }
                     else
                     {
-                        string newdata = tempdata.Remove(tempdata.Length-1, 1);
+                        string newdata = tempdata.Remove(tempdata.Length - 1, 1);
                         newdata = newdata + "," + humanJson + "]";
-                        File.WriteAllText("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\people.json", newdata);
+                        File.WriteAllText("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\ConsoleApp\\people.json", newdata);
                     }
                     cont = ContinueOrNot();
                 }
                 else if (add == "access")
                 {
-                    var personJson = File.ReadAllText("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\people.json");
+                    var personJson = File.ReadAllText("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\ConsoleApp\\people.json");
                     List<Person> persons = JsonSerializer.Deserialize<List<Person>>(personJson); 
                     
                     for (int i = 0; i < persons.Count(); i++)

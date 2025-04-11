@@ -3,6 +3,8 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text.RegularExpressions;
 using System.Text.Json.Serialization;
 using System.Text.Json;
+using static ClassLibrary.Class1;
+using static ClassLibrary.Class1.Methods;
 
 namespace FormsProj
 {
@@ -14,165 +16,34 @@ namespace FormsProj
         public int index = 0;
         public List<Pet> pet1 = [];
         public List<String> pets = [];
-        
-        public class Person
-        {
-            private string name;
-            private int age;
-            private List<String> pets;
-            public string Name
-            {
-                get { return name; }
-                set
-                {
-                    if (Regex.IsMatch(value, "\"[^a-zA-z]\"g"))
-                    {
-                        throw new ArgumentException();
-                    }
-                    name = value;
-                }
-            }
-            public int Age
-            {
-                get { return age; }
-                set
-                {
-                    if (value < 0)
-                    {
-                        throw new ArgumentOutOfRangeException();
-                    }
-                    age = value;
-                }
-            }
-            public List<string> Pets
-            {
-                get { return pets; }
-                set { pets = value; }
-            }
-        }
-        public class Pet
-        {
-            public void Person(string name, int id, string species)
-            {
-                this.name = name;
-                this.id = id;
-                this.species = species;
-            }
-
-            private string name;
-            private string species;
-            private int id;
-            public string Name
-            {
-                get { return name; }
-                set
-                {
-                    if (Regex.IsMatch(value, "\"[^a-zA-z]\"g"))
-                    {
-                        throw new ArgumentException();
-                    }
-
-                    name = value;
-                }
-            }
-            public string Species
-            {
-                get { return species; }
-                set
-                {
-                    if (Regex.IsMatch(value, "\"[^a-zA-z]\"g"))
-                    {
-                        throw new ArgumentException();
-                    }
-
-                    species = value;
-                }
-            }
-            public int Id
-            {
-                get { return id; }
-                set
-                {
-                    if (value < 0)
-                    {
-                        throw new ArgumentOutOfRangeException();
-                    }
-
-                    id = value;
-                }
-            }
-        }
-
-
         public Form1()
         {
             InitializeComponent();
-
         }
-
         private void label1_Click(object sender, EventArgs e)
         {
 
         }
-
         private void label2_Click(object sender, EventArgs e)
         {
 
         }
-
         public void button1_Click(object sender, EventArgs e)
         {
             realName = "";
-            int invalidCharacters = 0;
-            int validCharactersTotal = 0;
-            string validCharactersString = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz ";
-            char[] validCharacters = validCharactersString.ToCharArray();    //Suitable characters for a name
-
-            while (validCharactersTotal != textBox1.Text.Length && invalidCharacters == 0)           //Iterates through the name and checks all characters are valid
+            string data = textBox1.Text;
+            string name = ValidateName(data);
+            if (name != "false")
             {
-                for (int i = 0; i < textBox1.Text.Length; i += 1)
-                {
-                    char letter1temp = textBox1.Text[i];
-
-                    for (int z = 0; z < validCharacters.Length; z += 1)
-                    {
-                        char letter2temp = validCharacters[z];
-
-                        if (textBox1.Text[i] == letter2temp)
-                        {
-                            validCharactersTotal += 1;
-                            continue;
-                        }
-                        else
-                        {
-                            if (z + 1 == validCharacters.Length)
-                            {
-                                invalidCharacters = 1;
-                            }
-                            else
-                            {
-                                invalidCharacters = 0;
-                                continue;
-                            }
-                        }
-                    }
-                }
-                if (validCharactersTotal == textBox1.Text.Length)
-                {
-                    invalidCharacters = 0;
-                }
-                if (invalidCharacters == 0)
-                {
-                    textBox1.ReadOnly = true;
-                    button1.Enabled = false;
-                    realName = textBox1.Text;
-                }
-                else
-                {
-                    label5.Show();
-                    MessageBox.Show("Real name please.");
-                    textBox1.Text = null;
-                }
+                textBox1.ReadOnly = true;
+                button1.Enabled = false;
+                realName = textBox1.Text;
+            }
+            else
+            {
+                label5.Show();
+                MessageBox.Show("Real name please.");
+                textBox1.Text = null;
             }
         }
 
@@ -272,7 +143,7 @@ namespace FormsProj
             }
             else
             {
-                var human = new Person()
+                var human = new Person("", 0)
                 {
                     Age = realAge,
                     Name = realName,
@@ -310,6 +181,7 @@ namespace FormsProj
         private void button4_Click(object sender, EventArgs e)
         {
             var pet = new Pet();
+            pet.Path = "C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\WinFormsApp\\people.json";
             if (numOfPets < 2)
             {
                 pet.Name = textBox4.Text;
@@ -321,8 +193,8 @@ namespace FormsProj
                     textBox5.ReadOnly = true;
                     textBox6.ReadOnly = true;
                     button4.Enabled = false;
-                    pets.Add(JsonSerializer.Serialize(pet));
-                    var human = new Person()
+                    pets.Add(JsonSerializer.Serialize(pet, new JsonSerializerOptions() { WriteIndented = true }));
+                    var human = new Person("", 0)
                     {
                         Age = realAge,
                         Name = realName,
