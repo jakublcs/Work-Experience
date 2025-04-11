@@ -1,0 +1,18 @@
+[{
+  "Name": "John Doe",
+  "Age": 42,
+  "Pets": [
+    "{\u0022Name\u0022:\u0022Buddy\u0022,\u0022Species\u0022:\u0022Dog\u0022,\u0022Id\u0022:123}"
+  ]
+},{
+  "Name": "John Doe",
+  "Age": 42,
+  "Pets": [
+    "{\r\n  \u0022Name\u0022: \u0022Fred\u0022,\r\n  \u0022Species\u0022: \u0022Fish\u0022,\r\n  \u0022Id\u0022: 12\r\n}",
+    "{\u0022Name\u0022:\u0022Bob\u0022,\u0022Species\u0022:\u0022Cat\u0022,\u0022Id\u0022:12323423}"
+  ]
+},{
+  "Name": "dfg",
+  "Age": 123234,
+  "Pets": []
+}]

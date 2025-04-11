@@ -1,0 +1,51 @@
+C:\Users\Localadmin\source\repos\FormsProj\bin\Debug\net8.0-windows\FormsProj.exe
+C:\Users\Localadmin\source\repos\FormsProj\bin\Debug\net8.0-windows\FormsProj.deps.json
+C:\Users\Localadmin\source\repos\FormsProj\bin\Debug\net8.0-windows\FormsProj.runtimeconfig.json
+C:\Users\Localadmin\source\repos\FormsProj\bin\Debug\net8.0-windows\FormsProj.dll
+C:\Users\Localadmin\source\repos\FormsProj\bin\Debug\net8.0-windows\FormsProj.pdb
+C:\Users\Localadmin\source\repos\FormsProj\obj\Debug\net8.0-windows\FormsProj.Form1.resources
+C:\Users\Localadmin\source\repos\FormsProj\obj\Debug\net8.0-windows\FormsProj.csproj.GenerateResource.cache
+C:\Users\Localadmin\source\repos\FormsProj\obj\Debug\net8.0-windows\FormsProj.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Localadmin\source\repos\FormsProj\obj\Debug\net8.0-windows\FormsProj.AssemblyInfoInputs.cache
+C:\Users\Localadmin\source\repos\FormsProj\obj\Debug\net8.0-windows\FormsProj.AssemblyInfo.cs
+C:\Users\Localadmin\source\repos\FormsProj\obj\Debug\net8.0-windows\FormsProj.csproj.CoreCompileInputs.cache
+C:\Users\Localadmin\source\repos\FormsProj\obj\Debug\net8.0-windows\FormsProj.dll
+C:\Users\Localadmin\source\repos\FormsProj\obj\Debug\net8.0-windows\refint\FormsProj.dll
+C:\Users\Localadmin\source\repos\FormsProj\obj\Debug\net8.0-windows\FormsProj.pdb
+C:\Users\Localadmin\source\repos\FormsProj\obj\Debug\net8.0-windows\FormsProj.genruntimeconfig.cache
+C:\Users\Localadmin\source\repos\FormsProj\obj\Debug\net8.0-windows\ref\FormsProj.dll
+C:\Users\Localadmin\source\repos\FormsProj\obj\Debug\net8.0-windows\FormsProj.sourcelink.json
+C:\Users\Localadmin\source\repos\WorkExperience\WinForms App\bin\Debug\net8.0-windows\FormsProj.exe
+C:\Users\Localadmin\source\repos\WorkExperience\WinForms App\bin\Debug\net8.0-windows\FormsProj.deps.json
+C:\Users\Localadmin\source\repos\WorkExperience\WinForms App\bin\Debug\net8.0-windows\FormsProj.runtimeconfig.json
+C:\Users\Localadmin\source\repos\WorkExperience\WinForms App\bin\Debug\net8.0-windows\FormsProj.dll
+C:\Users\Localadmin\source\repos\WorkExperience\WinForms App\bin\Debug\net8.0-windows\FormsProj.pdb
+C:\Users\Localadmin\source\repos\WorkExperience\WinForms App\obj\Debug\net8.0-windows\FormsProj.Form1.resources
+C:\Users\Localadmin\source\repos\WorkExperience\WinForms App\obj\Debug\net8.0-windows\FormsProj.csproj.GenerateResource.cache
+C:\Users\Localadmin\source\repos\WorkExperience\WinForms App\obj\Debug\net8.0-windows\FormsProj.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Localadmin\source\repos\WorkExperience\WinForms App\obj\Debug\net8.0-windows\FormsProj.AssemblyInfoInputs.cache
+C:\Users\Localadmin\source\repos\WorkExperience\WinForms App\obj\Debug\net8.0-windows\FormsProj.AssemblyInfo.cs
+C:\Users\Localadmin\source\repos\WorkExperience\WinForms App\obj\Debug\net8.0-windows\FormsProj.csproj.CoreCompileInputs.cache
+C:\Users\Localadmin\source\repos\WorkExperience\WinForms App\obj\Debug\net8.0-windows\FormsProj.sourcelink.json
+C:\Users\Localadmin\source\repos\WorkExperience\WinForms App\obj\Debug\net8.0-windows\FormsProj.dll
+C:\Users\Localadmin\source\repos\WorkExperience\WinForms App\obj\Debug\net8.0-windows\refint\FormsProj.dll
+C:\Users\Localadmin\source\repos\WorkExperience\WinForms App\obj\Debug\net8.0-windows\FormsProj.pdb
+C:\Users\Localadmin\source\repos\WorkExperience\WinForms App\obj\Debug\net8.0-windows\FormsProj.genruntimeconfig.cache
+C:\Users\Localadmin\source\repos\WorkExperience\WinForms App\obj\Debug\net8.0-windows\ref\FormsProj.dll
+C:\Users\Localadmin\source\repos\WorkExperience\WinFormsApp\bin\Debug\net8.0-windows\FormsProj.exe
+C:\Users\Localadmin\source\repos\WorkExperience\WinFormsApp\bin\Debug\net8.0-windows\FormsProj.deps.json
+C:\Users\Localadmin\source\repos\WorkExperience\WinFormsApp\bin\Debug\net8.0-windows\FormsProj.runtimeconfig.json
+C:\Users\Localadmin\source\repos\WorkExperience\WinFormsApp\bin\Debug\net8.0-windows\FormsProj.dll
+C:\Users\Localadmin\source\repos\WorkExperience\WinFormsApp\bin\Debug\net8.0-windows\FormsProj.pdb
+C:\Users\Localadmin\source\repos\WorkExperience\WinFormsApp\obj\Debug\net8.0-windows\FormsProj.Form1.resources
+C:\Users\Localadmin\source\repos\WorkExperience\WinFormsApp\obj\Debug\net8.0-windows\FormsProj.csproj.GenerateResource.cache
+C:\Users\Localadmin\source\repos\WorkExperience\WinFormsApp\obj\Debug\net8.0-windows\FormsProj.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Localadmin\source\repos\WorkExperience\WinFormsApp\obj\Debug\net8.0-windows\FormsProj.AssemblyInfoInputs.cache
+C:\Users\Localadmin\source\repos\WorkExperience\WinFormsApp\obj\Debug\net8.0-windows\FormsProj.AssemblyInfo.cs
+C:\Users\Localadmin\source\repos\WorkExperience\WinFormsApp\obj\Debug\net8.0-windows\FormsProj.csproj.CoreCompileInputs.cache
+C:\Users\Localadmin\source\repos\WorkExperience\WinFormsApp\obj\Debug\net8.0-windows\FormsProj.sourcelink.json
+C:\Users\Localadmin\source\repos\WorkExperience\WinFormsApp\obj\Debug\net8.0-windows\FormsProj.dll
+C:\Users\Localadmin\source\repos\WorkExperience\WinFormsApp\obj\Debug\net8.0-windows\refint\FormsProj.dll
+C:\Users\Localadmin\source\repos\WorkExperience\WinFormsApp\obj\Debug\net8.0-windows\FormsProj.pdb
+C:\Users\Localadmin\source\repos\WorkExperience\WinFormsApp\obj\Debug\net8.0-windows\FormsProj.genruntimeconfig.cache
+C:\Users\Localadmin\source\repos\WorkExperience\WinFormsApp\obj\Debug\net8.0-windows\ref\FormsProj.dll

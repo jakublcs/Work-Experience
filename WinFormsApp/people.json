@@ -1,0 +1,14 @@
+[{
+  "Name": "John Doe",
+  "Age": 43,
+  "Pets": [
+    "{\u0022Name\u0022:\u0022Buddy\u0022,\u0022Species\u0022:\u0022Dog\u0022,\u0022Id\u0022:123}"
+  ]
+},{
+  "Name": "Jane Doe",
+  "Age": 44,
+  "Pets": [
+    "{\r\n  \u0022Name\u0022: \u0022Fred\u0022,\r\n  \u0022Species\u0022: \u0022Fish\u0022,\r\n  \u0022Id\u0022: 1233423\r\n}",
+    "{\u0022Name\u0022:\u0022Gerald\u0022,\u0022Species\u0022:\u0022Cat\u0022,\u0022Id\u0022:1}"
+  ]
+}]
