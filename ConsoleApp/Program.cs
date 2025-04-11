@@ -211,7 +211,7 @@ namespace Greeting
                         WriteIndented = true
                     });
                     var tempdata = File.ReadAllText("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\ConsoleApp\\people.json");
-                    if (tempdata == null)
+                    if (tempdata == "")
                     {
                         File.AppendAllText("C:\\Users\\Localadmin\\source\\repos\\WorkExperience\\ConsoleApp\\people.json", "[" + humanJson + "]");
                     }
